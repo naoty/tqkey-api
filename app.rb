@@ -19,3 +19,12 @@ post "/users" do
   end
 end
 
+put "/users/:id" do
+  user = User.find(params[:id])
+  if user.update_attributes(params[:user])
+    user.to_json
+  else
+    411
+  end
+end
+
