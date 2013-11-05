@@ -21,7 +21,8 @@ end
 
 put "/users/:id" do
   user = User.find(params[:id])
-  if user.update_attributes(params[:user])
+  attrs = JSON.parse(request.body.read)
+  if user.update_attributes(attrs["user"])
     user.to_json
   else
     411
